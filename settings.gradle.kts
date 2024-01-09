@@ -14,4 +14,14 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "NewsApp"
-include(":app")
+include(":app",
+    ":backend:utils",
+    ":backend:starWars",
+
+    ":domain:impl",
+    ":domain:basic",
+
+    ":data:impl",
+    ":data:basic",
+
+    ":common:domain")

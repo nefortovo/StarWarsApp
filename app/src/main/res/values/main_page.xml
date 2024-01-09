@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_page">Main page</string>
+    <string name="main_text">In a dark place we find ourselves, and a little more knowledge lights our way.</string>
+    <string name="favorite_page">Favorite</string>
+    <string name="favorite_text">Always pass on what you have learned.</string>
+</resources>
