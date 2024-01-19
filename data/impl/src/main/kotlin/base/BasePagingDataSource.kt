@@ -1,11 +1,11 @@
 package base
 
+import androidx.paging.PagingSource
+import entity.Entity
 import models.AuthException
 import models.NetworkException
 import models.NoNetworkException
 import models.ResponseStatus
-import androidx.paging.PagingSource
-import entity.Entity
 import retrofit2.HttpException
 import retrofit2.Response
 import java.net.UnknownHostException

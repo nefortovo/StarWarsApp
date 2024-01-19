@@ -15,9 +15,6 @@ object LocalBroadcastManager {
 sealed class ErrorStatus(
     open val message: String,
 ){
-    data class Authentication(
-        override val message: String,
-    ): ErrorStatus(message)
 
     data class Network(
         override val message: String,

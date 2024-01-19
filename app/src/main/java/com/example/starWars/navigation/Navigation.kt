@@ -6,10 +6,15 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.starWars.navigation.Screens.Companion.NAME_KEY
 import com.example.starWars.screens.main.MainScreen
+import com.example.starWars.screens.people.PeopleScreen
+
 
 @Composable
 fun Navigation(modifier: Modifier = Modifier) {
@@ -17,40 +22,68 @@ fun Navigation(modifier: Modifier = Modifier) {
     Scaffold(
         modifier = Modifier
             .statusBarsPadding()
-    ) {padding ->
+    ) { padding ->
         NavHost(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding),
             navController = navController,
-            startDestination = Screens.MainScreen.screenRoute
-        ){
-            composable(route = Screens.MainScreen.screenRoute){
-                MainScreen(modifier = Modifier.fillMaxSize())
+            startDestination = Screens.MainScreen.destination()
+        ) {
+
+            composable(route = Screens.MainScreen.destination()) {
+                MainScreen(modifier = Modifier.fillMaxSize(),
+                    navigateToPeople = { navController.navigate(Screens.PeopleScreen.destination(it)) }
+                )
+            }
+
+            composable(
+                route = Screens.PeopleScreen.screenRoute,
+                arguments = listOf(navArgument(NAME_KEY) {
+                    type = NavType.StringType
+                    nullable = false
+                })
+            ) { navBackStackEntry ->
+                val name = navBackStackEntry.arguments?.getString(NAME_KEY).toString()
+                PeopleScreen(
+                    name = name,
+                    onBack = navController::popBackStack,
+                    modifier = Modifier
+                        .fillMaxSize()
+                )
             }
         }
-
     }
 }
 
 
 sealed class Screens(
     val screenRoute: String
-){
+) {
 
 
-    object MainScreen: Screens(
+    object MainScreen : Screens(
         screenRoute = mainScreenRoute,
-    ){
+    ) {
         fun destination(): String {
-            return mainScreenRoute
+            return screenRoute
+        }
+    }
+
+    object PeopleScreen : Screens(
+        screenRoute = "$peopleDetailsScreen/{$NAME_KEY}",
+    ) {
+        fun destination(name: String): String {
+            return "$peopleDetailsScreen/$name"
         }
     }
 
 
+    companion object {
+        const val NAME_KEY = "name"
 
 
-    companion object{
-        const val mainScreenRoute  = "mainScreen"
+        const val mainScreenRoute = "mainScreen"
+        const val peopleDetailsScreen = "peopleDetailsScreen"
     }
 }

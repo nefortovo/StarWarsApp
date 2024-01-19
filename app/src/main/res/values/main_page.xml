@@ -4,4 +4,6 @@
     <string name="main_text">In a dark place we find ourselves, and a little more knowledge lights our way.</string>
     <string name="favorite_page">Favorite</string>
     <string name="favorite_text">Always pass on what you have learned.</string>
+    <string name="gender"><b>Gender:</b> %s</string>
+    <string name="starships"><b>Starships:</b> %s</string>
 </resources>

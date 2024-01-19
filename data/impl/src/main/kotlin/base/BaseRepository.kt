@@ -1,14 +1,14 @@
 package base
 
-import models.AuthException
-import models.NetworkException
-import models.NoNetworkException
-import models.ResponseStatus
 import base.ResponseCodes.SERVER_ERROR_CODE
 import base.ResponseCodes.SUCCESS_CODES
 import broadcastManager.ErrorStatus
 import broadcastManager.LocalBroadcastManager
 import entity.Entity
+import models.AuthException
+import models.NetworkException
+import models.NoNetworkException
+import models.ResponseStatus
 import retrofit2.HttpException
 import retrofit2.Response
 import java.net.UnknownHostException
@@ -16,7 +16,6 @@ import java.net.UnknownHostException
 open class BaseRepository(
     private val repository: String = TAG,
 ) {
-
     protected suspend fun <K : Any> safeApiSuspendResult(call: suspend () -> Response<K>?): ResponseStatus<K> {
         val response: Response<K>?
         return try {
@@ -129,4 +128,6 @@ open class BaseRepository(
     companion object {
         private const val TAG = "Repository"
     }
+
+
 }

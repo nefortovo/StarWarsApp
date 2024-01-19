@@ -14,7 +14,6 @@ class NetworkProvider(
     private val client = OkHttpClient.Builder().apply {
         readTimeout(READ_TIME_OUT, TimeUnit.SECONDS)
         connectTimeout(CONNECT_TIME_OUT, TimeUnit.SECONDS)
-//        authenticator(TokenAuthenticator(tokenManager))
         if (BuildConfig.DEBUG) {
             addInterceptor(
                 HttpLoggingInterceptor().apply {

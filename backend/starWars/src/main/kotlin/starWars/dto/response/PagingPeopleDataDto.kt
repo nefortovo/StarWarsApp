@@ -6,9 +6,9 @@ data class PagingPeopleDataDto(
     @SerializedName("count")
     val count: Int,
     @SerializedName("next")
-    val next: String?,
+    val next: String,
     @SerializedName("previous")
-    val previous: String?,
+    val previous: String,
     @SerializedName("results")
-    val results: List<PeopleFullDataDto>,
+    val results: List<PeopleFullDataDto> = emptyList(),
     )

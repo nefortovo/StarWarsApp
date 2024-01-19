@@ -31,19 +31,24 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.example.starWars.R
 import com.example.starWars.components.input.InputComponent
+import com.example.starWars.components.listItem.PeopleItem
 
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
     viewModel: MainViewModel = hiltViewModel(),
+    navigateToPeople: (String) -> Unit
 ) {
-    val mainUiState by viewModel.mainUIState.collectAsState()
+
+    val searchPeople by viewModel.searchPeople.collectAsState()
 
     val peopleList = viewModel.peopleList.collectAsLazyPagingItems()
 
     var isMain by remember{
         mutableStateOf(true)
     }
+
+
 
     Column(
         modifier = modifier
@@ -108,7 +113,7 @@ fun MainScreen(
 
             }
             InputComponent(
-                value = mainUiState.search,
+                value = searchPeople,
                 onValueChange = { viewModel.changeSearch(it) },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -117,13 +122,21 @@ fun MainScreen(
             LazyColumn(
                 modifier = Modifier
                     .padding(top = 20.dp)
+                    .padding(horizontal = 22.dp)
             ){
-                items(peopleList){ it ->
-                    it?.let {
-                        Text(text = it.name, color = Color.White)
+                items(peopleList){ people ->
+                    people?.let {
+                        PeopleItem(
+                            item = people,
+                            modifier = Modifier
+                                .clickable { navigateToPeople(people.name) }
+                                .padding(bottom = 8.dp)
+                                .fillMaxWidth()
+                        )
                     }
                 }
             }
+            
         }
     }   
 }

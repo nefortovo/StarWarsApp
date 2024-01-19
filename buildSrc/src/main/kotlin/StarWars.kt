@@ -17,7 +17,7 @@ object StarWarsClient {
         val starWarsBackend = Field(
             type = "String",
             name = "STARWARS_BACKEND",
-            value = "\"https://swapi.dev\"",
+            value = "\"https://swapi.dev/api/\"",
         )
 
         val jvmTarget = JavaVersion.VERSION_17.toString()
