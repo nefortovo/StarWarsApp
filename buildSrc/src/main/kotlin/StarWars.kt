@@ -7,10 +7,10 @@ object StarWarsClient {
     object DefaultConfig {
         const val id = "com.example.starWars"
         const val minSdk = 26
-        const val targetSdk = 33
+        const val targetSdk = 34
         const val versionCode = 1
         const val releseNumber = 1
-        const val compileSdk = 33
+        const val compileSdk = 34
         const val versionName = "0.$releseNumber.$versionCode"
         const val kotlinCompilerExtensionVersion = "1.4.3"
 

@@ -3,6 +3,8 @@ plugins {
     kotlin("android")
     kotlin("kapt")
 }
+
+
 android {
     namespace = StarWarsClient.namespace("data.impl")
     compileSdk = StarWarsClient.DefaultConfig.compileSdk
@@ -17,7 +19,18 @@ android {
     buildFeatures {
         buildConfig = true
     }
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += mapOf(
+                    "room.schemaLocation" to "$projectDir/schemas",
+                    "room.incremental" to "true"
+                )
+            }
+        }
+    }
 }
+
 
 dependencies {
     implementation(Dependencies.Core.Ktx.lib)
@@ -38,11 +51,18 @@ dependencies {
     implementation(Dependencies.Paging.pagingCompose)
     implementation(Dependencies.DaggerHilt.hilt)
 
+
+    implementation(Dependencies.Room.roomRuntime)
+    implementation(Dependencies.Room.roomKtx)
+    annotationProcessor(Dependencies.Room.annotationProcessor)
+    kapt(Dependencies.Room.roomKapt)
+
     api(project(":data:basic"))
 
     implementation(project(":backend:starWars"))
     implementation(project(":backend:utils"))
     implementation(project(":common:domain"))
     implementation(project(":domain:basic"))
+
 
 }

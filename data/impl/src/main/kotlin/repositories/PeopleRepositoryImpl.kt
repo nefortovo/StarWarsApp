@@ -7,14 +7,18 @@ import base.BasePagingDataSource
 import base.BaseRepository
 import entity.Entity
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import mappers.asEntity
+import mappers.asRoomEntity
 import models.ResponseStatus
 import paging.people.PeoplePagingSource
+import room.dao.PeopleDao
 import search.people.models.PeopleFullDataEntity
 import starWars.api.SearchApi
 
 class PeopleRepositoryImpl(
-    private val searchApi: SearchApi
+    private val searchApi: SearchApi,
+    private val peopleDao: PeopleDao
 ) : PeopleRepository, BaseRepository(TAG) {
     override fun searchPeople(search: String): Flow<PagingData<PeopleFullDataEntity>> {
         return Pager(
@@ -30,6 +34,24 @@ class PeopleRepositoryImpl(
             }
         ).flow
 
+    }
+
+    override suspend fun savePeople(peopleFullDataEntity: PeopleFullDataEntity) {
+        peopleDao.savePeople(
+            peopleFullDataEntity.asRoomEntity()
+        )
+    }
+
+    override suspend fun deletePeople(peopleFullDataEntity: PeopleFullDataEntity) {
+        peopleDao.deletePeople(
+            peopleFullDataEntity.name
+        )
+    }
+
+    override fun getAllSavedPeople(): Flow<List<PeopleFullDataEntity>> {
+        return peopleDao.getAllSavedPeople().map { peopleEntities ->
+            peopleEntities.map { it.asEntity() }
+        }
     }
 
     override suspend fun getPeople(name: String): Entity<List<PeopleFullDataEntity>> {

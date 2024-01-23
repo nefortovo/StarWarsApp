@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import repositories.PeopleRepository
 import repositories.PeopleRepositoryImpl
+import room.dao.PeopleDao
 import starWars.api.SearchApi
 
 @Module
@@ -13,11 +14,13 @@ import starWars.api.SearchApi
 class DataModule {
 
     @Provides
-    fun provideAuthRepository(
+    fun provideSearchRepository(
         searchApi: SearchApi,
+        peopleDao: PeopleDao
     ): PeopleRepository {
         return PeopleRepositoryImpl(
             searchApi = searchApi,
+            peopleDao = peopleDao
         )
     }
 }

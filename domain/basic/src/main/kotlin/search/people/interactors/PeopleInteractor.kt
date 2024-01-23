@@ -10,6 +10,12 @@ interface PeopleInteractor {
         search: String
     ) : Flow<PagingData<PeopleFullDataEntity>>
 
+    fun getAllSavedPeople(
+    ) : Flow<List<PeopleFullDataEntity>>
+
+    suspend fun savePeople(peopleFullDataEntity: PeopleFullDataEntity)
+    suspend fun deletePeople(peopleFullDataEntity: PeopleFullDataEntity)
+
     suspend fun getPeople(name: String): Entity<List<PeopleFullDataEntity>>
 
 }

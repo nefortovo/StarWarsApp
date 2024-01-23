@@ -10,6 +10,9 @@ interface PeopleRepository {
         search: String
     ) : Flow<PagingData<PeopleFullDataEntity>>
 
+    suspend fun savePeople(peopleFullDataEntity: PeopleFullDataEntity)
+    suspend fun deletePeople(peopleFullDataEntity: PeopleFullDataEntity)
+    fun getAllSavedPeople() : Flow<List<PeopleFullDataEntity>>
     suspend fun getPeople(name: String): Entity<List<PeopleFullDataEntity>>
 
 }

@@ -29,8 +29,5 @@ import starWars.dto.response.PeopleFullDataDto
             species = species,
             vehicles = vehicles,
             starships = starships,
-            created = created,
-            edited = edited,
-            url = url,
         )
     }

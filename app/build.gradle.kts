@@ -108,6 +108,11 @@ dependencies {
     implementation(Dependencies.Paging.pagingLib)
     implementation(Dependencies.Paging.pagingCompose)
 
+    implementation(Dependencies.Room.roomRuntime)
+    implementation(Dependencies.Room.roomKtx)
+    annotationProcessor(Dependencies.Room.annotationProcessor)
+    kapt(Dependencies.Room.roomKapt)
+
     implementation(project(":backend:starWars"))
     implementation(project(":backend:utils"))
 

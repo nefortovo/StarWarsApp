@@ -14,7 +14,5 @@ data class PeopleFullDataEntity(
     val species: List<String>,
     val vehicles: List<String>,
     val starships: List<String>,
-    val created: String,
-    val edited: String,
-    val url: String,
-    )
+    val isFavorite: Boolean = false
+)

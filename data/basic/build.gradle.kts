@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     kotlin("android")
+    kotlin("kapt")
 }
 android {
     namespace = StarWarsClient.namespace("data.basic")
@@ -22,4 +23,9 @@ dependencies {
 
     implementation(project(":domain:basic"))
     implementation(project(":common:domain"))
+
+    implementation(Dependencies.Room.roomRuntime)
+    implementation(Dependencies.Room.roomKtx)
+    annotationProcessor(Dependencies.Room.annotationProcessor)
+    kapt(Dependencies.Room.roomKapt)
 }

@@ -1,7 +1,7 @@
 object Dependencies {
 
     object Gradle {
-        private const val version = "8.0.1"
+        private const val version = "8.2.0"
         const val plugin = "com.android.tools.build:gradle:$version"
     }
 
@@ -27,6 +27,14 @@ object Dependencies {
         private const val matherial3Version = "1.1.1"
         const val material = "androidx.compose.material:material:$matherialVersion"
         const val material3 = "androidx.compose.material3:material3:$matherial3Version"
+    }
+
+    object Room{
+        private const val room_version = "2.6.1"
+        const val roomRuntime = "androidx.room:room-runtime:$room_version"
+        const val annotationProcessor = "androidx.room:room-compiler:$room_version"
+        const val roomKapt = "androidx.room:room-compiler:$room_version"
+        const val roomKtx = "androidx.room:room-ktx:$room_version"
     }
 
     object Core {
@@ -96,14 +104,7 @@ object Dependencies {
         const val lib = "io.coil-kt:coil-compose:$version"
         const val libSvg = "io.coil-kt:coil-svg:$version"
     }
-
-    object Accompanist {
-        private const val version = "0.27.0"
-
-        const val systemUiController =
-            "com.google.accompanist:accompanist-systemuicontroller:$version"
-
-    }
+    
 
     object Splashscreen{
         private const val version = "1.0.0"

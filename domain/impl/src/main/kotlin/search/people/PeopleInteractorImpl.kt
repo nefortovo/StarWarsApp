@@ -14,6 +14,18 @@ class PeopleInteractorImpl(
         return peopleRepository.searchPeople(search)
     }
 
+    override fun getAllSavedPeople(): Flow<List<PeopleFullDataEntity>> {
+        return peopleRepository.getAllSavedPeople()
+    }
+
+    override suspend fun savePeople(peopleFullDataEntity: PeopleFullDataEntity) {
+        return peopleRepository.savePeople(peopleFullDataEntity)
+    }
+
+    override suspend fun deletePeople(peopleFullDataEntity: PeopleFullDataEntity) {
+        return peopleRepository.deletePeople(peopleFullDataEntity)
+    }
+
     override suspend fun getPeople(name: String): Entity<List<PeopleFullDataEntity>> {
         return peopleRepository.getPeople(name)
     }
